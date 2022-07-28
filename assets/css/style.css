@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+body {
+    margin: 0 auto;
+}
+
 h1 {
     margin: 15px;
     width: 100%;
@@ -12,10 +16,39 @@ h1 {
 }
 
 .board {
-    width: 400px;
-    height: 400px;
+    width: 100vw;
+    height: 100vh;
     background-color: pink;
-    position: relative;
-    margin: 0 auto;
-    display: block;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(3, auto);
 }
+
+.cell {
+    width: 120px;
+    height: 120px;
+    background-color: yellow;
+    border: 1px solid red;
+}
+
+.player-1 {
+    background-color: red;
+    height: 130px;
+    width: 130px;
+    float: left;
+    margin: 120px;
+    text-align: center;
+    font-size: 150%;
+}
+
+.player-2 {
+    background-color: blue;
+    height: 130px;
+    width: 130px;
+    float: right;
+    margin: 120px;
+    text-align: center;
+    font-size: 150%;
+}
+
