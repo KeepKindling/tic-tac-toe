@@ -16,7 +16,6 @@ body {
 .board {
     width: 100vw;
     height: 100vh;
-    background-color: pink;
     display: grid;
     justify-content: center;
     justify-items: center;
@@ -41,6 +40,7 @@ h1 {
     justify-content: center;
     align-items: center;
     position: relative;
+    cursor: pointer;
 }
 
 /*Rules that remove borders from the game grid*/
@@ -69,9 +69,13 @@ h1 {
     border-bottom: none;
 }
 
+/*Hover effects*/
 /*Creating the x and o*/
+
 .cell.x::before,
-.cell.x::after {
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
     content: '';
     width: calc(var(--mark-size) * .15);
     height: var(--mark-size);
@@ -79,36 +83,109 @@ h1 {
     position: absolute;
 }
 
-.cell.x::before {
+.cell.x,
+.cell.circle {
+    cursor: not-allowed;
+}
+
+.cell.x::before,
+.cell.x::after,
+.cell.circle::before {
+    background-color: black;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+    background-color: lightgrey;
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before {
     transform: rotate(45deg);
 }
 
-.cell.x::after {
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after {
     transform: rotate(-45deg);
 }
 
 .cell.circle::before,
-.cell.circle::after {
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after {
     content: '';
     position: absolute;
     border-radius: 50%;
 }
 
-.cell.circle::before {
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before {
     width: var(--mark-size);
     height: var(--mark-size);
-    background-color: black;
 }
 
-.cell.circle::after {
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after {
     width: calc(var(--mark-size) * .75);
     height: calc(var(--mark-size) * .75);
-    background-color: pink;
+    background-color: white;
 }
 
+/*score-box and buttons styles*/
 
+.scores {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .85);
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 3rem;
+    display: none;
+}
 
-/*score-box styles*/
+.scores.show {
+    display: flex;
+}
 
+.player-1-score {
+    float: left;
+    margin-left: 50px;
+}
+
+.player-2-score {
+    float: right;
+    margin-right: 50px;
+}
+
+.player-1-score,
+.player-2-score {
+    width: 300px;
+    height: 350px;
+    background-color: grey;
+    margin-top: 250px;
+}
+
+.play-again {
+    font-size: 2rem;
+    color: grey;
+    position: absolute;
+    left: 520px;
+    right: 520px;
+    top: 500px;
+    bottom: 100px;
+    border: 3px solid grey;
+    padding: 5px;
+}
+
+.play-again:hover {
+    background: grey;
+    color: white;
+    border-color: white;
+}
 
 
