@@ -87,6 +87,25 @@ h1 {
     transform: rotate(-45deg);
 }
 
+.cell.circle::before,
+.cell.circle::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+.cell.circle::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+    background-color: black;
+}
+
+.cell.circle::after {
+    width: calc(var(--mark-size) * .75);
+    height: calc(var(--mark-size) * .75);
+    background-color: pink;
+}
+
 
 
 /*score-box styles*/
