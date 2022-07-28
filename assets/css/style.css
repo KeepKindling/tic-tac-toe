@@ -6,14 +6,12 @@ body {
     margin: 0 auto;
 }
 
-h1 {
-    margin: 15px;
-    width: 100%;
-    height: 50px;
-    text-align: center;
-    justify-content: center;
-    font-size: 300%;
+:root {
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size) * .9);
 }
+
+/*Main structure rules*/
 
 .board {
     width: 100vw;
@@ -21,34 +19,77 @@ h1 {
     background-color: pink;
     display: grid;
     justify-content: center;
+    justify-items: center;
     align-content: center;
+    align-items: center;
     grid-template-columns: repeat(3, auto);
+}
+
+h1 {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    justify-content: center;
+    font-size: 300%;
 }
 
 .cell {
     width: 120px;
     height: 120px;
-    background-color: yellow;
-    border: 1px solid red;
+    border: 2px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-.player-1 {
-    background-color: red;
-    height: 130px;
-    width: 130px;
-    float: left;
-    margin: 120px;
-    text-align: center;
-    font-size: 150%;
+/*Rules that remove borders from the game grid*/
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
 }
 
-.player-2 {
-    background-color: blue;
-    height: 130px;
-    width: 130px;
-    float: right;
-    margin: 120px;
-    text-align: center;
-    font-size: 150%;
+.cell:nth-child(1),
+.cell:nth-child(4),
+.cell:nth-child(7) {
+    border-left: none;
 }
+
+.cell:nth-child(3),
+.cell:nth-child(6),
+.cell:nth-child(9) {
+    border-right: none;
+}
+
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9) {
+    border-bottom: none;
+}
+
+/*Creating the x and o*/
+.cell.x::before,
+.cell.x::after {
+    content: '';
+    width: calc(var(--mark-size) * .15);
+    height: var(--mark-size);
+    background-color: black;
+    position: absolute;
+}
+
+.cell.x::before {
+    transform: rotate(45deg);
+}
+
+.cell.x::after {
+    transform: rotate(-45deg);
+}
+
+
+
+/*score-box styles*/
+
+
 
