@@ -1,10 +1,18 @@
 const x_Class = "x";
 const circle_Class = "circle";
 const cellElements = document.querySelectorAll('[data-cell]')
+const board = document.getElementById('board')
 let circleTurn
-cellElements.forEach(cell => {
-    cell.addEventListener('click', handleClick, { once: true})
-})
+
+startGame()
+
+function startGame() {
+    circleTurn = false
+    cellElements.forEach(cell => {
+        cell.addEventListener('click', handleClick, { once: true})
+    })
+    setBoardHoverClass()
+}
 
 function handleClick(e) {
     //place Mark
@@ -14,8 +22,24 @@ function handleClick(e) {
     //Check for win
     //Check for draw
     //Switch turns
+    switchTurns()
+    setBoardHoverClass()
 }
 
 function placeMark(cell, currentClass) {
     cell.classList.add(currentClass)
+}
+
+function switchTurns() {
+    circleTurn = !circleTurn
+}
+
+function setBoardHoverClass() {
+    board.classList.remove(x_Class)
+    board.classList.remove(circle_Class)
+    if (circleTurn) {
+    board.classList.add(circle_Class)
+    } else {
+        board.classList.add(x_Class)
+    }
 }
